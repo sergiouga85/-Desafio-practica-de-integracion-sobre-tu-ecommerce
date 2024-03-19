@@ -36,6 +36,10 @@ const schema = new Schema({
     type: Date,
     default: null,
   },
+  isPremium: {
+    type: Boolean,
+    default: false,
+  },
 }, {
   versionKey: false,
   strict: 'throw',
