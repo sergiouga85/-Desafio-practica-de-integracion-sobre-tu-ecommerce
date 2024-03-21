@@ -1,14 +1,14 @@
-import  bcrypt  from 'bcrypt';
 import { usersDao } from '../dao/index.js';
 import { appendJwtAsCookie } from './authentication.business.js';
 import {UserDTO} from '../dto/userDto.js';
 import  {authService}  from '../services/auth.service.js';
 import {emailService}  from '../services/email.service.js';
+import {adminsOnly} from'../middlewares/authorization.js'
 
 
 export const registerUser = async (req, res, next) => {
   try {
-    appendJwtAsCookie,
+    appendJwtAsCookie
     res['successfullPost'](req.user);
   } catch (error) {
     next(error);
@@ -28,7 +28,8 @@ export const getCurrentUser = async (req, res, next) => {
 
 export const getAllUsers = async (req, res, next) => {
   try {
-    authorizationMiddleware(['admin']);
+    //authorizationMiddleware(['admin']);
+    adminsOnly
     const usuarios = await usersDao.findAllUsers();
     res['successfullGet'](usuarios);
   } catch (error) {
